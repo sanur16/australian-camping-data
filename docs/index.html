@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Australian Camping Data — Holidays, Postcodes &amp; Checklist</title>
+  <meta name="description" content="Open-source Australian public holidays, school holidays, postcode geocoding, and camping checklist data. Available as JSON files and an npm package.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="./">Australian Camping Data</a></h1>
+      <nav>
+        <a href="holidays.html">Holiday Calendar</a>
+        <a href="checklist.html">Checklist Builder</a>
+        <a href="https://github.com/sanur16/australian-camping-data">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <h2>Australian holiday &amp; camping data,<br>ready to use</h2>
+      <p>Public holidays, school holidays, 3,174 postcode coordinates, and a smart camping packing checklist. JSON files you can drop in, or install as an npm package.</p>
+      <div class="install-box">npm install australian-camping-data</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Public Holidays</h3>
+        <p>2026-2027 public holidays for all Australian states and territories, sourced from government gazettes.</p>
+        <a href="holidays.html">View interactive calendar &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>School Holidays</h3>
+        <p>Term break periods for NSW, VIC, QLD, SA, WA, TAS, NT, and ACT. Know when families are travelling.</p>
+        <a href="holidays.html">View by state &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Postcode Geocoding</h3>
+        <p>3,174 Australian postcodes with latitude and longitude coordinates. JSON and CSV formats.</p>
+        <a href="https://github.com/sanur16/australian-camping-data/tree/main/data/postcodes">View data &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Camping Checklist</h3>
+        <p>Smart packing list that adapts to your campground. Missing showers? It adds biodegradable soap.</p>
+        <a href="checklist.html">Build your checklist &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Haversine Distance</h3>
+        <p>Calculate straight-line distance and estimated drive time between Australian coordinates.</p>
+        <a href="https://github.com/sanur16/australian-camping-data/blob/main/src/geo.ts">View source &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Long Weekend Finder</h3>
+        <p>Automatically detects long weekends by combining public holidays with regular weekends.</p>
+        <a href="holidays.html">Find long weekends &rarr;</a>
+      </div>
+    </div>
+
+    <section>
+      <h2>Quick start</h2>
+      <pre style="background:var(--gray-900);color:#a5f3fc;padding:1.25rem;border-radius:var(--radius);overflow-x:auto;font-size:0.85rem;line-height:1.7">
+<span style="color:#6b7280">// Install</span>
+npm install australian-camping-data
+
+<span style="color:#6b7280">// Use in your app</span>
+import { getPublicHolidays, isSchoolHoliday, lookupPostcode } from 'australian-camping-data';
+
+<span style="color:#6b7280">// Get NSW public holidays for 2026</span>
+const holidays = getPublicHolidays(2026, 'NSW');
+
+<span style="color:#6b7280">// Check if a date falls in school holidays</span>
+isSchoolHoliday('2026-07-05', 'NSW'); <span style="color:#6b7280">// true (winter holidays)</span>
+
+<span style="color:#6b7280">// Postcode geocoding</span>
+lookupPostcode('2000'); <span style="color:#6b7280">// { lat: -33.8688, lng: 151.2093 }</span>
+
+<span style="color:#6b7280">// Or import raw JSON</span>
+import holidays from 'australian-camping-data/data/holidays/2026.json';</pre>
+    </section>
+
+    <section>
+      <h2>Data sources</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Dataset</th><th>Format</th><th>Records</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Public holidays</td>
+            <td>JSON</td>
+            <td>2026-2027</td>
+            <td>State government gazettes</td>
+          </tr>
+          <tr>
+            <td>School holidays</td>
+            <td>JSON</td>
+            <td>2026, 8 states</td>
+            <td>State education departments</td>
+          </tr>
+          <tr>
+            <td>Postcode geocoding</td>
+            <td>JSON, CSV</td>
+            <td>3,174 postcodes</td>
+            <td><a href="https://github.com/matthewproctor/australianpostcodes" style="color:var(--green-700)">matthewproctor/australianpostcodes</a> (CC0)</td>
+          </tr>
+          <tr>
+            <td>Camping checklist</td>
+            <td>JSON</td>
+            <td>9 categories, 50+ items</td>
+            <td>Curated by the <a href="https://www.campwatch.com.au" style="color:var(--green-700)">CampWatch</a> team</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="cta-box">
+      <p>Planning a camping trip in Australia?</p>
+      <a href="https://www.campwatch.com.au">Get free campsite alerts from CampWatch</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      Built and maintained by the team at <a href="https://www.campwatch.com.au">CampWatch</a> &mdash; free campsite availability alerts for Australia. <br>
+      <a href="https://github.com/sanur16/australian-camping-data">View on GitHub</a> &middot; MIT License
+    </div>
+  </footer>
+</body>
+</html>

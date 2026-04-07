@@ -1,0 +1,40 @@
+{
+  "name": "australian-camping-data",
+  "version": "1.0.0",
+  "description": "Australian public holidays, school holidays, postcode geocoding, and camping checklist data — as JSON files and a typed npm package.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "data"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./data/*": "./data/*"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "australia",
+    "public-holidays",
+    "school-holidays",
+    "postcodes",
+    "geocoding",
+    "camping",
+    "checklist",
+    "australian-holidays",
+    "long-weekends"
+  ],
+  "homepage": "https://sanur16.github.io/australian-camping-data",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanur16/australian-camping-data"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

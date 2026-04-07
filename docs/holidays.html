@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Australian Public Holidays &amp; School Holidays 2026-2027 | Long Weekend Calendar</title>
+  <meta name="description" content="Interactive calendar of Australian public holidays, school holidays, and long weekends for 2026-2027. Filter by state — NSW, VIC, QLD, SA, WA, TAS, NT, ACT.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="./">Australian Camping Data</a></h1>
+      <nav>
+        <a href="holidays.html" class="active">Holiday Calendar</a>
+        <a href="checklist.html">Checklist Builder</a>
+        <a href="https://github.com/sanur16/australian-camping-data">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Australian Public Holidays &amp; School Holidays</h2>
+      <p>Select your state to see public holidays, school holiday periods, and long weekends for 2026-2027.</p>
+
+      <div class="state-selector" id="stateSelector">
+        <button class="state-btn active" data-state="NSW">NSW</button>
+        <button class="state-btn" data-state="VIC">VIC</button>
+        <button class="state-btn" data-state="QLD">QLD</button>
+        <button class="state-btn" data-state="SA">SA</button>
+        <button class="state-btn" data-state="WA">WA</button>
+        <button class="state-btn" data-state="TAS">TAS</button>
+        <button class="state-btn" data-state="NT">NT</button>
+        <button class="state-btn" data-state="ACT">ACT</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>Long weekends in 2026 <span id="longWeekendState" style="color:var(--green-700)">NSW</span></h3>
+      <p style="color:var(--gray-500);font-size:0.9rem">Weekends extended to 3+ days by public holidays — perfect for camping trips.</p>
+      <div id="longWeekends"></div>
+    </section>
+
+    <section>
+      <h3>Public holidays 2026 <span id="holidayState" style="color:var(--green-700)">NSW</span></h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Date</th><th>Day</th><th>Holiday</th><th>Scope</th></tr>
+        </thead>
+        <tbody id="holidays2026"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Public holidays 2027 <span id="holidayState2" style="color:var(--green-700)">NSW</span></h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Date</th><th>Day</th><th>Holiday</th><th>Scope</th></tr>
+        </thead>
+        <tbody id="holidays2027"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>School holidays 2026 <span id="schoolState" style="color:var(--green-700)">NSW</span></h3>
+      <div id="schoolHolidays"></div>
+    </section>
+
+    <div class="cta-box">
+      <p>Planning a camping trip over a long weekend?</p>
+      <a href="https://www.campwatch.com.au">CampWatch alerts you when booked-out campsites open up</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      Built by the team at <a href="https://www.campwatch.com.au">CampWatch</a> &mdash; free campsite availability alerts for Australia.<br>
+      <a href="https://github.com/sanur16/australian-camping-data">View on GitHub</a> &middot; MIT License
+    </div>
+  </footer>
+
+  <script>
+    // Inline data to avoid fetch/CORS issues with GitHub Pages
+    const HOLIDAYS = {
+      2026: [
+        { date: "2026-01-01", name: "New Year's Day", states: [] },
+        { date: "2026-01-26", name: "Australia Day", states: [] },
+        { date: "2026-03-02", name: "Royal Hobart Regatta", states: ["TAS"] },
+        { date: "2026-03-09", name: "Canberra Day", states: ["ACT"] },
+        { date: "2026-03-09", name: "Adelaide Cup", states: ["SA"] },
+        { date: "2026-03-09", name: "Labour Day", states: ["VIC"] },
+        { date: "2026-04-03", name: "Good Friday", states: [] },
+        { date: "2026-04-04", name: "Easter Saturday", states: [] },
+        { date: "2026-04-06", name: "Easter Monday", states: [] },
+        { date: "2026-04-07", name: "Easter Tuesday", states: ["TAS"] },
+        { date: "2026-04-25", name: "Anzac Day", states: [] },
+        { date: "2026-05-04", name: "May Day", states: ["QLD", "NT"] },
+        { date: "2026-05-04", name: "Labour Day", states: ["QLD"] },
+        { date: "2026-06-01", name: "Western Australia Day", states: ["WA"] },
+        { date: "2026-06-08", name: "Queen's Birthday", states: ["NSW", "ACT", "SA", "TAS", "VIC", "QLD"] },
+        { date: "2026-06-15", name: "Queen's Birthday", states: ["WA"] },
+        { date: "2026-07-13", name: "Royal Queensland Show", states: ["QLD"] },
+        { date: "2026-08-03", name: "Bank Holiday", states: ["NSW"] },
+        { date: "2026-08-03", name: "Picnic Day", states: ["NT"] },
+        { date: "2026-10-05", name: "Labour Day", states: ["NSW", "ACT", "SA"] },
+        { date: "2026-11-03", name: "Melbourne Cup", states: ["VIC"] },
+        { date: "2026-11-03", name: "Recreation Day", states: ["TAS"] },
+        { date: "2026-12-25", name: "Christmas Day", states: [] },
+        { date: "2026-12-26", name: "Boxing Day", states: [] },
+        { date: "2026-12-28", name: "Boxing Day (observed)", states: [] }
+      ],
+      2027: [
+        { date: "2027-01-01", name: "New Year's Day", states: [] },
+        { date: "2027-01-26", name: "Australia Day", states: [] },
+        { date: "2027-03-08", name: "Canberra Day", states: ["ACT"] },
+        { date: "2027-03-08", name: "Adelaide Cup", states: ["SA"] },
+        { date: "2027-03-08", name: "Labour Day", states: ["VIC"] },
+        { date: "2027-03-26", name: "Good Friday", states: [] },
+        { date: "2027-03-27", name: "Easter Saturday", states: [] },
+        { date: "2027-03-29", name: "Easter Monday", states: [] },
+        { date: "2027-04-25", name: "Anzac Day", states: [] },
+        { date: "2027-05-03", name: "May Day", states: ["QLD", "NT"] },
+        { date: "2027-06-07", name: "Western Australia Day", states: ["WA"] },
+        { date: "2027-06-14", name: "Queen's Birthday", states: ["NSW", "ACT", "SA", "TAS", "VIC", "QLD"] },
+        { date: "2027-10-04", name: "Labour Day", states: ["NSW", "ACT", "SA"] },
+        { date: "2027-12-25", name: "Christmas Day", states: [] },
+        { date: "2027-12-26", name: "Boxing Day", states: [] },
+        { date: "2027-12-27", name: "Christmas Day (observed)", states: [] },
+        { date: "2027-12-28", name: "Boxing Day (observed)", states: [] }
+      ]
+    };
+
+    const SCHOOL_HOLIDAYS = {
+      NSW: [
+        { start: "2026-04-06", end: "2026-04-17", name: "Autumn holidays" },
+        { start: "2026-06-29", end: "2026-07-10", name: "Winter holidays" },
+        { start: "2026-09-21", end: "2026-10-02", name: "Spring holidays" },
+        { start: "2026-12-18", end: "2027-01-29", name: "Summer holidays" }
+      ],
+      VIC: [
+        { start: "2026-04-03", end: "2026-04-19", name: "Autumn holidays" },
+        { start: "2026-06-27", end: "2026-07-12", name: "Winter holidays" },
+        { start: "2026-09-19", end: "2026-10-04", name: "Spring holidays" },
+        { start: "2026-12-19", end: "2027-01-29", name: "Summer holidays" }
+      ],
+      QLD: [
+        { start: "2026-04-04", end: "2026-04-19", name: "Autumn holidays" },
+        { start: "2026-06-27", end: "2026-07-12", name: "Winter holidays" },
+        { start: "2026-09-19", end: "2026-10-04", name: "Spring holidays" },
+        { start: "2026-12-12", end: "2027-01-25", name: "Summer holidays" }
+      ],
+      SA: [
+        { start: "2026-04-13", end: "2026-04-26", name: "Autumn holidays" },
+        { start: "2026-07-04", end: "2026-07-19", name: "Winter holidays" },
+        { start: "2026-09-26", end: "2026-10-11", name: "Spring holidays" },
+        { start: "2026-12-12", end: "2027-01-25", name: "Summer holidays" }
+      ],
+      WA: [
+        { start: "2026-04-03", end: "2026-04-19", name: "Autumn holidays" },
+        { start: "2026-07-04", end: "2026-07-19", name: "Winter holidays" },
+        { start: "2026-09-26", end: "2026-10-11", name: "Spring holidays" },
+        { start: "2026-12-18", end: "2027-02-01", name: "Summer holidays" }
+      ],
+      TAS: [
+        { start: "2026-04-10", end: "2026-04-26", name: "Autumn holidays" },
+        { start: "2026-07-04", end: "2026-07-19", name: "Winter holidays" },
+        { start: "2026-09-26", end: "2026-10-11", name: "Spring holidays" },
+        { start: "2026-12-18", end: "2027-02-06", name: "Summer holidays" }
+      ],
+      NT: [
+        { start: "2026-04-03", end: "2026-04-12", name: "Autumn holidays" },
+        { start: "2026-06-20", end: "2026-07-19", name: "Winter holidays" },
+        { start: "2026-09-26", end: "2026-10-04", name: "Spring holidays" },
+        { start: "2026-12-14", end: "2027-01-26", name: "Summer holidays" }
+      ],
+      ACT: [
+        { start: "2026-04-06", end: "2026-04-17", name: "Autumn holidays" },
+        { start: "2026-07-04", end: "2026-07-19", name: "Winter holidays" },
+        { start: "2026-09-26", end: "2026-10-11", name: "Spring holidays" },
+        { start: "2026-12-18", end: "2027-01-30", name: "Summer holidays" }
+      ]
+    };
+
+    const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + "T00:00:00");
+      return d.toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" });
+    }
+
+    function getDayName(dateStr) {
+      const d = new Date(dateStr + "T00:00:00");
+      return DAYS[d.getDay()];
+    }
+
+    function daysDiff(start, end) {
+      const s = new Date(start + "T00:00:00");
+      const e = new Date(end + "T00:00:00");
+      return Math.round((e - s) / (1000 * 60 * 60 * 24)) + 1;
+    }
+
+    function getHolidaysForState(year, state) {
+      return (HOLIDAYS[year] || []).filter(
+        h => h.states.length === 0 || h.states.includes(state)
+      );
+    }
+
+    function findLongWeekends(year, state) {
+      const holidays = getHolidaysForState(year, state);
+      const holidayDates = new Set(holidays.map(h => h.date));
+      const results = [];
+
+      const jan1 = new Date(year, 0, 1);
+      let d = new Date(jan1);
+      while (d.getDay() !== 6) d.setDate(d.getDate() + 1);
+
+      while (d.getFullYear() === year) {
+        const sat = new Date(d);
+        const sun = new Date(d);
+        sun.setDate(sun.getDate() + 1);
+
+        let start = new Date(sat);
+        let prev = new Date(start);
+        prev.setDate(prev.getDate() - 1);
+        while (holidayDates.has(prev.toISOString().slice(0, 10))) {
+          start = new Date(prev);
+          prev = new Date(start);
+          prev.setDate(prev.getDate() - 1);
+        }
+
+        let end = new Date(sun);
+        let next = new Date(end);
+        next.setDate(next.getDate() + 1);
+        while (holidayDates.has(next.toISOString().slice(0, 10))) {
+          end = new Date(next);
+          next = new Date(end);
+          next.setDate(next.getDate() + 1);
+        }
+
+        const nights = Math.round((end - start) / (1000 * 60 * 60 * 24));
+        if (nights >= 3) {
+          const names = [];
+          for (let i = new Date(start); i <= end; i.setDate(i.getDate() + 1)) {
+            const ds = i.toISOString().slice(0, 10);
+            const h = holidays.find(x => x.date === ds);
+            if (h) names.push(h.name);
+          }
+          results.push({
+            start: start.toISOString().slice(0, 10),
+            end: end.toISOString().slice(0, 10),
+            nights,
+            holidays: names
+          });
+        }
+
+        d.setDate(d.getDate() + 7);
+      }
+      return results;
+    }
+
+    function renderHolidays(year, state, containerId) {
+      const holidays = getHolidaysForState(year, state);
+      const tbody = document.getElementById(containerId);
+      tbody.innerHTML = holidays.map(h => `
+        <tr>
+          <td>${formatDate(h.date)}</td>
+          <td>${getDayName(h.date)}</td>
+          <td>${h.name}</td>
+          <td>${h.states.length === 0
+            ? '<span class="badge badge-national">National</span>'
+            : '<span class="badge badge-state">' + h.states.join(', ') + '</span>'
+          }</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderLongWeekends(state) {
+      const weekends = findLongWeekends(2026, state);
+      const container = document.getElementById('longWeekends');
+
+      if (weekends.length === 0) {
+        container.innerHTML = '<p style="color:var(--gray-400)">No long weekends found for this state in 2026.</p>';
+        return;
+      }
+
+      container.innerHTML = '<div class="card-grid">' + weekends.map(w => `
+        <div class="card" style="border-left: 3px solid var(--red-600)">
+          <h3 style="font-size:0.95rem">${formatDate(w.start)} &ndash; ${formatDate(w.end)}</h3>
+          <p style="margin-bottom:0.5rem">
+            <span class="badge badge-long">${w.nights} nights</span>
+          </p>
+          <p style="font-size:0.85rem">${w.holidays.join(', ')}</p>
+        </div>
+      `).join('') + '</div>';
+    }
+
+    function renderSchoolHolidays(state) {
+      const periods = SCHOOL_HOLIDAYS[state] || [];
+      const container = document.getElementById('schoolHolidays');
+
+      container.innerHTML = '<div class="card-grid">' + periods.map(p => {
+        const days = daysDiff(p.start, p.end);
+        return `
+          <div class="card" style="border-left: 3px solid var(--green-600)">
+            <h3 style="font-size:0.95rem">${p.name}</h3>
+            <p>${formatDate(p.start)} &ndash; ${formatDate(p.end)}</p>
+            <p><span class="badge badge-school">${days} days</span></p>
+          </div>
+        `;
+      }).join('') + '</div>';
+    }
+
+    function update(state) {
+      document.querySelectorAll('.state-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.state === state);
+      });
+      document.getElementById('longWeekendState').textContent = state;
+      document.getElementById('holidayState').textContent = state;
+      document.getElementById('holidayState2').textContent = state;
+      document.getElementById('schoolState').textContent = state;
+
+      renderHolidays(2026, state, 'holidays2026');
+      renderHolidays(2027, state, 'holidays2027');
+      renderLongWeekends(state);
+      renderSchoolHolidays(state);
+    }
+
+    document.getElementById('stateSelector').addEventListener('click', e => {
+      if (e.target.classList.contains('state-btn')) {
+        update(e.target.dataset.state);
+      }
+    });
+
+    // Initial render
+    update('NSW');
+  </script>
+</body>
+</html>

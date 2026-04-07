@@ -1,0 +1,246 @@
+{
+  "categories": [
+    {
+      "name": "Shelter & sleeping",
+      "baseItems": [
+        { "name": "Tent (with pegs and guy ropes)", "essential": true },
+        { "name": "Sleeping bag", "essential": true },
+        { "name": "Sleeping mat or air mattress", "essential": true },
+        { "name": "Pillow", "essential": false },
+        { "name": "Groundsheet or tarp", "essential": false }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Lightweight tent (keep pack weight down)",
+          "essential": false,
+          "reason": "This is a walk-in / backpack campground",
+          "condition": { "type": "hasSiteType", "siteType": "backpack" }
+        }
+      ]
+    },
+    {
+      "name": "Cooking & food",
+      "baseItems": [
+        { "name": "Esky / cooler with ice", "essential": true },
+        { "name": "Plates, bowls, cups, cutlery", "essential": true },
+        { "name": "Dishwashing liquid and sponge", "essential": false },
+        { "name": "Tea towel", "essential": false },
+        { "name": "Rubbish bags", "essential": true },
+        { "name": "Food and snacks", "essential": true }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Portable camp stove + fuel",
+          "essential": true,
+          "reason": "No BBQ facilities at this campground",
+          "condition": { "type": "missingFacility", "facility": "barbecue facilities" }
+        },
+        {
+          "name": "Cooking pot and pan",
+          "essential": true,
+          "reason": "No kitchen at this campground",
+          "condition": { "type": "missingFacility", "facility": "kitchen" }
+        },
+        {
+          "name": "Chopping board and knife",
+          "essential": false,
+          "reason": "No kitchen at this campground",
+          "condition": { "type": "missingFacility", "facility": "kitchen" }
+        },
+        {
+          "name": "Portable BBQ or grill grate",
+          "essential": false,
+          "reason": "No BBQ facilities at this campground",
+          "condition": { "type": "missingFacility", "facility": "barbecue facilities" }
+        },
+        {
+          "name": "Fire starters / matches / lighter",
+          "essential": false,
+          "reason": "No BBQ facilities at this campground",
+          "condition": { "type": "missingFacility", "facility": "barbecue facilities" }
+        }
+      ]
+    },
+    {
+      "name": "Water",
+      "baseItems": [
+        { "name": "Reusable water bottle", "essential": true }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Large water containers (10-20L)",
+          "essential": true,
+          "reason": "No drinking water at this campground",
+          "condition": { "type": "missingFacility", "facility": "drinking water" }
+        },
+        {
+          "name": "Water purification tablets or filter",
+          "essential": false,
+          "reason": "No drinking water at this campground",
+          "condition": { "type": "missingFacility", "facility": "drinking water" }
+        }
+      ]
+    },
+    {
+      "name": "Hygiene & toiletries",
+      "baseItems": [
+        { "name": "Toothbrush and toothpaste", "essential": true },
+        { "name": "Sunscreen (SPF 50+)", "essential": true },
+        { "name": "Insect repellent", "essential": true },
+        { "name": "Hand sanitiser", "essential": false }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Biodegradable soap",
+          "essential": true,
+          "reason": "No showers at this campground",
+          "condition": { "type": "missingFacility", "facility": "showers" }
+        },
+        {
+          "name": "Camp shower bag (solar shower)",
+          "essential": false,
+          "reason": "No showers at this campground",
+          "condition": { "type": "missingFacility", "facility": "showers" }
+        },
+        {
+          "name": "Baby wipes / wet wipes",
+          "essential": true,
+          "reason": "No showers at this campground",
+          "condition": { "type": "missingFacility", "facility": "showers" }
+        },
+        {
+          "name": "Dry shampoo",
+          "essential": false,
+          "reason": "No showers at this campground",
+          "condition": { "type": "missingFacility", "facility": "showers" }
+        },
+        {
+          "name": "Towel (quick-dry)",
+          "essential": false,
+          "reason": "No showers at this campground",
+          "condition": { "type": "missingFacility", "facility": "showers" }
+        },
+        {
+          "name": "Toilet paper and small trowel",
+          "essential": true,
+          "reason": "No toilets at this campground",
+          "condition": { "type": "missingFacility", "facility": "toilets" }
+        }
+      ]
+    },
+    {
+      "name": "Clothing",
+      "baseItems": [
+        { "name": "Warm layers (it gets cold at night)", "essential": true },
+        { "name": "Rain jacket", "essential": true },
+        { "name": "Hat for sun protection", "essential": true },
+        { "name": "Sturdy closed-toe shoes", "essential": true },
+        { "name": "Thongs / sandals for around camp", "essential": false },
+        { "name": "Spare socks and underwear", "essential": false }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Swimwear",
+          "essential": false,
+          "reason": "Great for beach or water activities",
+          "condition": { "type": "hasBestFor", "bestFor": "beach-lovers" }
+        },
+        {
+          "name": "Hiking boots",
+          "essential": true,
+          "reason": "Good hiking nearby",
+          "condition": { "type": "hasBestFor", "bestFor": "hiking" }
+        }
+      ]
+    },
+    {
+      "name": "Lighting & power",
+      "baseItems": [
+        { "name": "Headtorch or torch + spare batteries", "essential": true },
+        { "name": "Camp lantern", "essential": false }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Portable power bank (large capacity)",
+          "essential": true,
+          "reason": "No powered sites at this campground",
+          "condition": { "type": "missingFacility", "facility": "powered sites" }
+        },
+        {
+          "name": "Solar charger",
+          "essential": false,
+          "reason": "No powered sites at this campground",
+          "condition": { "type": "missingFacility", "facility": "powered sites" }
+        },
+        {
+          "name": "Extra batteries",
+          "essential": false,
+          "reason": "No powered sites at this campground",
+          "condition": { "type": "missingFacility", "facility": "powered sites" }
+        }
+      ]
+    },
+    {
+      "name": "Safety & first aid",
+      "baseItems": [
+        { "name": "First aid kit", "essential": true },
+        { "name": "Personal medications", "essential": true },
+        { "name": "Emergency contact list (phone reception may be limited)", "essential": false }
+      ],
+      "conditionalItems": []
+    },
+    {
+      "name": "Campsite essentials",
+      "baseItems": [
+        { "name": "Camp chairs", "essential": false },
+        { "name": "Rope or clothesline", "essential": false },
+        { "name": "Multi-tool or pocket knife", "essential": false },
+        { "name": "Duct tape (small roll)", "essential": false }
+      ],
+      "conditionalItems": [
+        {
+          "name": "Portable camp table",
+          "essential": false,
+          "reason": "No picnic tables at this campground",
+          "condition": { "type": "missingFacility", "facility": "picnic tables" }
+        },
+        {
+          "name": "Fishing rod and tackle",
+          "essential": false,
+          "reason": "Good fishing at this campground",
+          "condition": { "type": "hasBestFor", "bestFor": "fishing" }
+        }
+      ]
+    },
+    {
+      "name": "Vehicle & 4WD gear",
+      "baseItems": [],
+      "conditionalItems": [
+        {
+          "name": "Recovery tracks",
+          "essential": true,
+          "reason": "4WD access may be required",
+          "condition": { "type": "hasBestFor", "bestFor": "4wd" }
+        },
+        {
+          "name": "Tyre deflator and compressor",
+          "essential": true,
+          "reason": "4WD access may be required",
+          "condition": { "type": "hasBestFor", "bestFor": "4wd" }
+        },
+        {
+          "name": "Snatch strap",
+          "essential": false,
+          "reason": "4WD access may be required",
+          "condition": { "type": "hasBestFor", "bestFor": "4wd" }
+        },
+        {
+          "name": "Shovel",
+          "essential": false,
+          "reason": "4WD access may be required",
+          "condition": { "type": "hasBestFor", "bestFor": "4wd" }
+        }
+      ]
+    }
+  ]
+}

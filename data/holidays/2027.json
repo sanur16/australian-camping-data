@@ -1,0 +1,19 @@
+[
+  { "date": "2027-01-01", "name": "New Year's Day", "states": [] },
+  { "date": "2027-01-26", "name": "Australia Day", "states": [] },
+  { "date": "2027-03-08", "name": "Canberra Day", "states": ["ACT"] },
+  { "date": "2027-03-08", "name": "Adelaide Cup", "states": ["SA"] },
+  { "date": "2027-03-08", "name": "Labour Day", "states": ["VIC"] },
+  { "date": "2027-03-26", "name": "Good Friday", "states": [] },
+  { "date": "2027-03-27", "name": "Easter Saturday", "states": [] },
+  { "date": "2027-03-29", "name": "Easter Monday", "states": [] },
+  { "date": "2027-04-25", "name": "Anzac Day", "states": [] },
+  { "date": "2027-05-03", "name": "May Day", "states": ["QLD", "NT"] },
+  { "date": "2027-06-07", "name": "Western Australia Day", "states": ["WA"] },
+  { "date": "2027-06-14", "name": "Queen's Birthday", "states": ["NSW", "ACT", "SA", "TAS", "VIC", "QLD"] },
+  { "date": "2027-10-04", "name": "Labour Day", "states": ["NSW", "ACT", "SA"] },
+  { "date": "2027-12-25", "name": "Christmas Day", "states": [] },
+  { "date": "2027-12-26", "name": "Boxing Day", "states": [] },
+  { "date": "2027-12-27", "name": "Christmas Day (observed)", "states": [] },
+  { "date": "2027-12-28", "name": "Boxing Day (observed)", "states": [] }
+]
