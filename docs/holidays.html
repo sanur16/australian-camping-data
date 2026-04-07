@@ -206,6 +206,13 @@
       );
     }
 
+    function toLocalDateStr(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+
     function findLongWeekends(year, state) {
       const holidays = getHolidaysForState(year, state);
       const holidayDates = new Set(holidays.map(h => h.date));
@@ -223,7 +230,7 @@
         let start = new Date(sat);
         let prev = new Date(start);
         prev.setDate(prev.getDate() - 1);
-        while (holidayDates.has(prev.toISOString().slice(0, 10))) {
+        while (holidayDates.has(toLocalDateStr(prev))) {
           start = new Date(prev);
           prev = new Date(start);
           prev.setDate(prev.getDate() - 1);
@@ -232,7 +239,7 @@
         let end = new Date(sun);
         let next = new Date(end);
         next.setDate(next.getDate() + 1);
-        while (holidayDates.has(next.toISOString().slice(0, 10))) {
+        while (holidayDates.has(toLocalDateStr(next))) {
           end = new Date(next);
           next = new Date(end);
           next.setDate(next.getDate() + 1);
@@ -242,13 +249,13 @@
         if (nights >= 3) {
           const names = [];
           for (let i = new Date(start); i <= end; i.setDate(i.getDate() + 1)) {
-            const ds = i.toISOString().slice(0, 10);
+            const ds = toLocalDateStr(i);
             const h = holidays.find(x => x.date === ds);
             if (h) names.push(h.name);
           }
           results.push({
-            start: start.toISOString().slice(0, 10),
-            end: end.toISOString().slice(0, 10),
+            start: toLocalDateStr(start),
+            end: toLocalDateStr(end),
             nights,
             holidays: names
           });
