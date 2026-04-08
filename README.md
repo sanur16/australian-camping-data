@@ -25,7 +25,7 @@ Try the data live at **[sanur16.github.io/australian-camping-data](https://sanur
 ## Install
 
 ```bash
-npm install australian-camping-data
+npm install @sanur/australian-camping-data
 ```
 
 ## Usage
@@ -38,7 +38,7 @@ import {
   resolveChecklist,
   haversineDistance,
   getLongWeekends,
-} from 'australian-camping-data';
+} from '@sanur/australian-camping-data';
 
 // Get NSW public holidays for 2026
 const holidays = getPublicHolidays(2026, 'NSW');
@@ -70,10 +70,10 @@ getLongWeekends(2026, 'NSW');
 You can import the JSON data directly without using the TypeScript helpers:
 
 ```typescript
-import holidays from 'australian-camping-data/data/holidays/2026.json';
-import schoolHolidays from 'australian-camping-data/data/school-holidays/2026.json';
-import postcodes from 'australian-camping-data/data/postcodes/au-postcodes.json';
-import checklist from 'australian-camping-data/data/camping/checklist.json';
+import holidays from '@sanur/australian-camping-data/data/holidays/2026.json';
+import schoolHolidays from '@sanur/australian-camping-data/data/school-holidays/2026.json';
+import postcodes from '@sanur/australian-camping-data/data/postcodes/au-postcodes.json';
+import checklist from '@sanur/australian-camping-data/data/camping/checklist.json';
 ```
 
 CSV format is also available for postcodes: `data/postcodes/au-postcodes.csv`

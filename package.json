@@ -1,5 +1,5 @@
 {
-  "name": "australian-camping-data",
+  "name": "@sanur/australian-camping-data",
   "version": "1.0.0",
   "description": "Australian public holidays, school holidays, postcode geocoding, and camping checklist data — as JSON files and a typed npm package.",
   "main": "dist/index.js",
